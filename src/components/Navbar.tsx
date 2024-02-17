@@ -13,7 +13,7 @@ const Navbar = () => {
        <h1 className="text-2xl">TechTools</h1>
       </div>
       <div className="relative w-96">
-       <Input className="w-full" placeholder="Search" />
+       <Input className="w-full" placeholder="Search for the product you want" />
        <Icons.search className="absolute right-4 top-[50%] translate-y-[-50%]" />
       </div>
       <div className="flex items-center gap-12">
