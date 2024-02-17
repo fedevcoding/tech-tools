@@ -12,13 +12,14 @@ const Navbar = () => {
        <Icons.logo />
        <h1 className="text-2xl">TechTools</h1>
       </div>
-
-      <Input className="max-w-96" />
-
+      <div className="relative w-96">
+       <Input className="w-full" placeholder="Search" />
+       <Icons.search className="absolute right-4 top-[50%] translate-y-[-50%]" />
+      </div>
       <div className="flex items-center gap-12">
-       <Icons.bell size={40} />
-       <Icons.cart size={40} />
-       <Icons.profile size={40} />
+       <Icons.bell size={32} />
+       <Icons.cart size={32} />
+       <Icons.profile size={32} />
       </div>
      </div>
     </MaxWidthWrapper>

@@ -1,5 +1,11 @@
 import { tailwindColors } from "@/lib/utils";
-import { LucideProps, Bell, ShoppingCart, CircleUserRound } from "lucide-react";
+import {
+ LucideProps,
+ Bell,
+ ShoppingCart,
+ CircleUserRound,
+ Search,
+} from "lucide-react";
 
 export const Icons = {
  logo: (props: LucideProps) => (
@@ -42,5 +48,8 @@ export const Icons = {
  ),
  profile: (props: LucideProps) => (
   <CircleUserRound color={tailwindColors.defaultGray} {...props} />
+ ),
+ search: (props: LucideProps) => (
+  <Search color={tailwindColors.defaultGray} {...props} />
  ),
 };
