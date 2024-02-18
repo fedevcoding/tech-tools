@@ -14,7 +14,7 @@ const Cart = () => {
    <SheetTrigger>
     <div className="flex items-center gap-2">
      <Icons.cart size={32} className="cursor-pointer" />
-     <span>0</span>
+     <span className="text-defaultGray">0</span>
     </div>
    </SheetTrigger>
    <SheetContent>
