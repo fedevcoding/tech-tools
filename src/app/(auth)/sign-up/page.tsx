@@ -5,16 +5,18 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
  AuthCredentialsValidator,
  TAuthCredentialsValidator,
 } from "@/lib/validators/account-validators";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
 import { trpc } from "@/trpc/client";
 
 const Page = () => {
+ const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({});
+
  const {
   register,
   handleSubmit,
@@ -23,7 +25,9 @@ const Page = () => {
   resolver: zodResolver(AuthCredentialsValidator),
  });
 
- const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {};
+ const onSubmit = (data: TAuthCredentialsValidator) => {
+  mutate(data);
+ };
 
  return (
   <>
