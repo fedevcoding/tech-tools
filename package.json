@@ -5,6 +5,7 @@
  "scripts": {
   "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
   "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
+  "run:mongodb": "docker run -d -p 27017:27017 --name my_mongodb -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=adminpassword mongo --auth",
   "build": "next build",
   "start": "next start",
   "lint": "next lint"
@@ -29,6 +30,7 @@
   "express": "^4.18.2",
   "lucide-react": "^0.323.0",
   "next": "14.1.0",
+  "nodemailer": "^6.9.10",
   "payload": "^2.11.1",
   "react": "^18",
   "react-dom": "^18",
