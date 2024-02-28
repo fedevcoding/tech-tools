@@ -12,7 +12,7 @@ const VerifyEmailPage = ({ searchParams }: PageProps) => {
 
  return (
   <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
-   <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[500px]">
+   <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
     {token && typeof token === "string" ? (
      <div className="grid gap-6">
       <VerifyEmail token={token} />
@@ -26,7 +26,7 @@ const VerifyEmailPage = ({ searchParams }: PageProps) => {
       <h3 className="font-semibold text-2xl">Check your email</h3>
 
       {to ? (
-       <p>
+       <p className="text-center">
         We&apos;ve sent a verification link to{" "}
         <span className="font-semibold">{to}</span>
        </p>
