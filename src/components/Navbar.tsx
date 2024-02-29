@@ -3,8 +3,14 @@ import { Icons } from "./Icons";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { Input } from "./ui/input";
 import Cart from "./Cart";
+import { getServerSideUser } from "@/lib/payload-utils";
+import { cookies } from "next/headers";
+import { buttonVariants } from "./ui/button";
 
-const Navbar = () => {
+const Navbar = async () => {
+ const nextCookies = cookies();
+ const { user } = await getServerSideUser(nextCookies);
+
  return (
   <div className="sticky z-50 top-0 h-20 border-b-2 border-defaultGray">
    <header className="relative">
@@ -24,7 +30,16 @@ const Navbar = () => {
       <div className="flex items-center gap-12">
        <Icons.bell size={32} className="cursor-pointer" />
        <Cart />
-       <Icons.profile size={32} className="cursor-pointer" />
+       {!user ? (
+        <Link
+         href={"/sign-in"}
+         className={buttonVariants({ variant: "secondary" })}
+        >
+         Sign in
+        </Link>
+       ) : (
+        <Icons.profile size={32} className="cursor-pointer" />
+       )}
       </div>
      </div>
     </MaxWidthWrapper>

@@ -94,7 +94,7 @@ const Page = () => {
           <p className="text-sm text-red-500">{errors.password.message}</p>
          )}
         </div>
-        <Button>SIGN UP</Button>
+        <Button>SIGN IN</Button>
        </div>
       </form>
      </div>
