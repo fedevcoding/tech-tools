@@ -6,6 +6,7 @@ import Cart from "./Cart";
 import { getServerSideUser } from "@/lib/payload-utils";
 import { cookies } from "next/headers";
 import { buttonVariants } from "./ui/button";
+import UserAccountNav from "./UserAccountNav";
 
 const Navbar = async () => {
  const nextCookies = cookies();
@@ -38,7 +39,7 @@ const Navbar = async () => {
          Sign in
         </Link>
        ) : (
-        <Icons.profile size={32} className="cursor-pointer" />
+        <UserAccountNav user={user} />
        )}
       </div>
      </div>
