@@ -22,8 +22,10 @@ const UserAccountNav = ({ user }: { user: User }) => {
    <DropdownMenuContent align="end" className="py-2 px-4">
     <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
     <DropdownMenuSeparator />
-    <DropdownMenuItem>Settings</DropdownMenuItem>
-    <DropdownMenuItem onClick={signOut}>Log out</DropdownMenuItem>
+    <DropdownMenuItem className="cursor-pointer">Settings</DropdownMenuItem>
+    <DropdownMenuItem className="cursor-pointer" onClick={signOut}>
+     Log out
+    </DropdownMenuItem>
    </DropdownMenuContent>
   </DropdownMenu>
  );
