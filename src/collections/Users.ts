@@ -1,5 +1,9 @@
 import { CollectionConfig } from "payload/types";
 
+const isAdmin = (param: any) => {
+ return param.req.user && param.req.user.role === "admin";
+};
+
 export const Users: CollectionConfig = {
  slug: "users",
  auth: {
@@ -11,8 +15,7 @@ export const Users: CollectionConfig = {
   },
  },
  access: {
-  read: () => true,
-  create: () => true,
+  admin: isAdmin,
  },
  fields: [
   {
