@@ -5,7 +5,7 @@ export default function Home() {
  return (
   <MaxWidthWrapper>
    <ProductReel
-    query={{ sort: "desc", limit: 4 }}
+    query={{ sort: "desc", limit: 18 }}
     title="Top sellers"
     subtitle="Explore our most popular products."
    />

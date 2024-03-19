@@ -12,7 +12,7 @@ interface ProductReelProps {
  query: TQyeryValidator;
 }
 
-const FALLBACK_LIMIT = 4;
+const FALLBACK_LIMIT = 12;
 
 const ProductReel = (props: ProductReelProps) => {
  const { title, subtitle, query } = props;
