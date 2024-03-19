@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 export const QueryValidator = z.object({
- category: z.string(),
+ //  category: z.string(),
  sort: z.enum(["asc", "desc"]),
  limit: z.number().optional(),
 });
 
-export type TQyertValidator = z.infer<typeof QueryValidator>;
+export type TQyeryValidator = z.infer<typeof QueryValidator>;
