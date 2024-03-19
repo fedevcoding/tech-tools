@@ -5,6 +5,9 @@ export const Media: CollectionConfig = {
  admin: {
   hidden: true,
  },
+ access: {
+  read: () => true,
+ },
  upload: {
   staticURL: "/media",
   staticDir: "/media",
@@ -30,13 +33,5 @@ export const Media: CollectionConfig = {
   ],
   mimeTypes: ["image/*"],
  },
- fields: [
-  {
-   name: "user",
-   relationTo: "users",
-   type: "relationship",
-   required: true,
-   hasMany: false,
-  },
- ],
+ fields: [],
 };
