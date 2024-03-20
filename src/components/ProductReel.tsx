@@ -9,13 +9,14 @@ import { Button } from "./ui/button";
 interface ProductReelProps {
  title: string;
  subtitle?: string;
+ filter?: boolean;
  query: TQyeryValidator;
 }
 
 const FALLBACK_LIMIT = 12;
 
 const ProductReel = (props: ProductReelProps) => {
- const { title, subtitle, query } = props;
+ const { title, subtitle, query, filter = true } = props;
 
  const { data: queryResults, isLoading } =
   trpc.getInfiniteProducts.useInfiniteQuery(
@@ -49,7 +50,7 @@ const ProductReel = (props: ProductReelProps) => {
      ) : null}
     </div>
 
-    <Button variant={"outline"}>Filters</Button>
+    {filter && <Button variant={"outline"}>Filters</Button>}
    </div>
 
    <div className="relative">
