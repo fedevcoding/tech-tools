@@ -86,7 +86,7 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
       <Image
        fill
        loading="eager"
-       className="-z-10 h-full w-full object-cover object-center"
+       className="-z-10 h-full w-full object-contain"
        src={url}
        alt="Product image"
       />
