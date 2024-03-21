@@ -2,31 +2,24 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-// import { useCart } from "@/hooks/use-cart";
+import { useCart } from "@/hooks/use-cart";
 import { Product } from "@/payload-types";
 
 const AddToCartButton = ({ product }: { product: Product }) => {
- //  const { addItem } = useCart();
- const [isSuccess, setIsSuccess] = useState<boolean>(false);
-
- useEffect(() => {
-  const timeout = setTimeout(() => {
-   setIsSuccess(false);
-  }, 2000);
-
-  return () => clearTimeout(timeout);
- }, [isSuccess]);
+ const { addItem, items, removeItem } = useCart();
+ console.log(items);
+ const isInCart = items.find((item) => item.product.id === product.id);
 
  return (
   <Button
    onClick={() => {
-    // addItem(product);
-    setIsSuccess(true);
+    isInCart ? removeItem(product.id) : addItem(product);
    }}
    size="lg"
    className="w-full"
+   variant={isInCart ? "destructive" : "default"}
   >
-   {isSuccess ? "Added!" : "Add to cart"}
+   {isInCart ? "Remove from cart" : "Add to cart"}
   </Button>
  );
 };
