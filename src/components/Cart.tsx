@@ -12,7 +12,6 @@ import { useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
-import Image from "next/image";
 import CartItem from "./CartItem";
 import { Separator } from "./ui/separator";
 import { ScrollArea } from "./ui/scroll-area";
@@ -21,13 +20,16 @@ const Cart = () => {
  const { items } = useCart();
  const itemCount = items.length;
 
- const cartTotal = items.reduce((acc, { product }) => acc + product.price, 0);
+ const cartTotal = items.reduce(
+  (acc, { product, quantity }) => acc + product.price * quantity,
+  0
+ );
 
  const fee = 1;
 
  return (
   <Sheet>
-   <SheetTrigger>
+   <SheetTrigger id="cart-modal">
     <div className="flex items-center gap-2">
      <Icons.cart size={32} className="cursor-pointer" />
      <span className="text-defaultGray">{itemCount}</span>
@@ -41,8 +43,8 @@ const Cart = () => {
      <>
       <div className="flex w-full flex-col pr-6">
        <ScrollArea>
-        {items.map(({ product }) => (
-         <CartItem product={product} key={product.id} />
+        {items.map((item) => (
+         <CartItem item={item} key={item.product.id} />
         ))}
        </ScrollArea>
       </div>

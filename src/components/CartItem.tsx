@@ -1,13 +1,12 @@
-import { useCart } from "@/hooks/use-cart";
+import { CartItem, useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
-import { Product } from "@/payload-types";
 import { ImageIcon, X } from "lucide-react";
 import Image from "next/image";
 
-const CartItem = ({ product }: { product: Product }) => {
+const CartItem = ({ item: { product, quantity } }: { item: CartItem }) => {
  const { image } = product.images[0];
 
- const { removeItem } = useCart();
+ const { removeItem, addItem, decrementItem } = useCart();
 
  return (
   <div className="space-y-3 py-2">
@@ -37,7 +36,7 @@ const CartItem = ({ product }: { product: Product }) => {
       </span>
 
       <span className="line-clamp-1 text-xs capitalize text-muted-foreground">
-       {"label"}
+       {quantity}
       </span>
 
       <div className="mt-4 text-xs text-muted-foreground">
@@ -48,13 +47,15 @@ const CartItem = ({ product }: { product: Product }) => {
         <X className="w-3 h-4" />
         Remove
        </button>
+       <button onClick={() => addItem(product)}>+</button>
+       <button onClick={() => decrementItem(product.id)}>-</button>
       </div>
      </div>
     </div>
 
     <div className="flex flex-col space-y-1 font-medium">
      <span className="ml-auto line-clamp-1 text-sm">
-      {formatPrice(product.price)}
+      {formatPrice(product.price * quantity)}
      </span>
     </div>
    </div>
