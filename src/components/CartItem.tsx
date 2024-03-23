@@ -1,6 +1,6 @@
 import { CartItem, useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
-import { ImageIcon, X } from "lucide-react";
+import { ImageIcon, Minus, Plus, Trash, X } from "lucide-react";
 import Image from "next/image";
 
 const CartItem = ({ item: { product, quantity } }: { item: CartItem }) => {
@@ -36,19 +36,25 @@ const CartItem = ({ item: { product, quantity } }: { item: CartItem }) => {
       </span>
 
       <span className="line-clamp-1 text-xs capitalize text-muted-foreground">
-       {quantity}
+       {formatPrice(product.price)}
       </span>
-
-      <div className="mt-4 text-xs text-muted-foreground">
-       <button
-        onClick={() => removeItem(product.id)}
-        className="flex items-center gap-0.5"
-       >
-        <X className="w-3 h-4" />
-        Remove
+      <div className="flex items-center mt-4 text-xs text-muted-foreground gap-2">
+       <div className="flex border-defaultGray border-[1px] rounded-lg p-1">
+        <button onClick={() => decrementItem(product.id)}>
+         <Minus className="w-4 h-4" />
+        </button>
+        <input
+         type="number"
+         className="w-6 bg-transparent text-center"
+         value={quantity}
+        />
+        <button onClick={() => addItem(product)}>
+         <Plus className="w-4 h-4" />
+        </button>
+       </div>
+       <button onClick={() => removeItem(product.id)}>
+        <Trash className="w-4 h-4" />
        </button>
-       <button onClick={() => addItem(product)}>+</button>
-       <button onClick={() => decrementItem(product.id)}>-</button>
       </div>
      </div>
     </div>
