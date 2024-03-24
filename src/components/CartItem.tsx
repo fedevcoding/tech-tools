@@ -1,6 +1,6 @@
 import { CartItem, useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
-import { ImageIcon, Minus, Plus, Trash, X } from "lucide-react";
+import { ImageIcon, Minus, Plus, Trash } from "lucide-react";
 import Image from "next/image";
 
 const CartItem = ({ item: { product, quantity } }: { item: CartItem }) => {

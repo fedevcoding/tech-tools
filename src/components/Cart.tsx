@@ -85,7 +85,7 @@ const Cart = () => {
        aria-hidden="true"
        className="relative mb-4 h-52 w-52 text-muted-foreground"
       >
-       <Icons.logo className="w-full h-full" width={100} />
+       <Icons.logo className="w-full h-full" />
       </div>
       <div className="text-xl font-semibold">Your cart is empty</div>
       <SheetTrigger asChild>
