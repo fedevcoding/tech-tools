@@ -32,7 +32,7 @@ const start = async () => {
  nextApp.prepare().then(() => {
   //   payload.logger.info("Nextjs started");
   app.listen(PORT, async () => {
-   //    payload.logger.info(`Nextjs app URL: ${process.env.NEXT_PUBLIC_SERVER_URL}`);
+   //    payload.logger.info(`Nextjs app URL: ${BASE_URL}`);
   });
  });
 };

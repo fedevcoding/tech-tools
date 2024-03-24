@@ -9,23 +9,19 @@ import {
 } from "./ui/sheet";
 import { Icons } from "./Icons";
 import { useCart } from "@/hooks/use-cart";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, getCartTotal } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import CartItem from "./CartItem";
 import { Separator } from "./ui/separator";
 import { ScrollArea } from "./ui/scroll-area";
+import { FEE_COST } from "@/constants";
 
 const Cart = () => {
  const { items } = useCart();
  const itemCount = items.length;
 
- const cartTotal = items.reduce(
-  (acc, { product, quantity }) => acc + product.price * quantity,
-  0
- );
-
- const fee = 1;
+ const cartTotal = getCartTotal(items);
 
  return (
   <Sheet>
@@ -57,11 +53,11 @@ const Cart = () => {
         </div>
         <div className="flex">
          <span className="flex-1">Transaction Fee</span>
-         <span>{formatPrice(fee)}</span>
+         <span>{formatPrice(FEE_COST)}</span>
         </div>
         <div className="flex">
          <span className="flex-1">Total</span>
-         <span>{formatPrice(cartTotal + fee)}</span>
+         <span>{formatPrice(cartTotal + FEE_COST)}</span>
         </div>
        </div>
 

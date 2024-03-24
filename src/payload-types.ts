@@ -11,6 +11,7 @@ export interface Config {
     users: User;
     products: Product;
     media: Media;
+    orders: Order;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -60,7 +61,6 @@ export interface Product {
  */
 export interface Media {
   id: string;
-  user: string | User;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -95,6 +95,25 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: string;
+  _isPaid: boolean;
+  user: string | User;
+  products?:
+    | {
+        amount: number;
+        product: string | Product;
+        price: number;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

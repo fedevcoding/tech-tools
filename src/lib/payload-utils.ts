@@ -1,3 +1,4 @@
+import { BASE_URL } from "../constants";
 import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { NextRequest } from "next/server";
 import { User } from "payload/dist/auth";
@@ -7,14 +8,11 @@ export const getServerSideUser = async (
 ) => {
  const token = cookies.get("payload-token")?.value;
 
- const userReq = await fetch(
-  `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/me`,
-  {
-   headers: {
-    Authorization: `JWT ${token}`,
-   },
-  }
- );
+ const userReq = await fetch(`${BASE_URL}/api/users/me`, {
+  headers: {
+   Authorization: `JWT ${token}`,
+  },
+ });
 
  const { user } = (await userReq.json()) as { user: User | null };
 

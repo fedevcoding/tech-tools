@@ -1,6 +1,8 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import tailwindConfig from "@/../tailwind.config";
+import { Product } from "@/payload-types";
+import { CartItem } from "@/hooks/use-cart";
 
 export function cn(...inputs: ClassValue[]) {
  return twMerge(clsx(inputs));
@@ -26,3 +28,10 @@ export function formatPrice(
   maximumFractionDigits: 2,
  }).format(numericPrice);
 }
+
+export const getCartTotal = (items: CartItem[]) => {
+ return items.reduce(
+  (acc, { product, quantity }) => acc + product.price * quantity,
+  0
+ );
+};

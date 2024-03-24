@@ -1,3 +1,4 @@
+import { BASE_URL } from "../constants";
 import { CollectionConfig } from "payload/types";
 
 const isAdmin = (param: any) => {
@@ -10,7 +11,7 @@ export const Users: CollectionConfig = {
   verify: {
    generateEmailHTML: ({ token }) => {
     // TODO: make the message nicier
-    return `<a href='${process.env.NEXT_PUBLIC_SERVER_URL}/verify-email?token=${token}'>Verify now</a>`;
+    return `<a href='${BASE_URL}/verify-email?token=${token}'>Verify now</a>`;
    },
   },
  },
