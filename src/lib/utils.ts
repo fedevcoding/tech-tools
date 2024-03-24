@@ -1,7 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import tailwindConfig from "@/../tailwind.config";
-import { Product } from "@/payload-types";
 import { CartItem } from "@/hooks/use-cart";
 
 export function cn(...inputs: ClassValue[]) {

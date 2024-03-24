@@ -13,7 +13,6 @@ import Link from "next/link";
 const Page = () => {
  const { items } = useCart();
  const isMounted = useMounted();
-
  const cartTotal = getCartTotal(items);
 
  return (

@@ -1,13 +1,10 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
 export const useMounted = () => {
- const mounted = useRef(false);
+ const [isMounted, setIsMounted] = useState<boolean>(false);
  useEffect(() => {
-  mounted.current = true;
-  return () => {
-   mounted.current = false;
-  };
+  setIsMounted(true);
  }, []);
- return mounted.current;
+ return isMounted;
 };
