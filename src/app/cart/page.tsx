@@ -7,13 +7,28 @@ import { FEE_COST } from "@/constants";
 import { useCart } from "@/hooks/use-cart";
 import { useMounted } from "@/hooks/use-mounted";
 import { cn, formatPrice, getCartTotal } from "@/lib/utils";
+import { trpc } from "@/trpc/client";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+ const router = useRouter();
+ const { mutate: createCheckoutSession, isLoading } =
+  trpc.payment.createSession.useMutation({
+   onSuccess: ({ url }) => {
+    if (url) router.push(url);
+   },
+  });
+
  const { items } = useCart();
  const isMounted = useMounted();
  const cartTotal = getCartTotal(items);
+
+ const products = items.map((item) => ({
+  productId: item.product.id,
+  amount: item.quantity,
+ }));
 
  return (
   <div>
@@ -111,7 +126,15 @@ const Page = () => {
       </div>
 
       <div className="mt-6">
-       <Button disabled={items.length === 0} className="w-full" size="lg">
+       <Button
+        onClick={() => {
+         createCheckoutSession({ products });
+        }}
+        disabled={items.length === 0 || isLoading}
+        className="w-full"
+        size="lg"
+       >
+        {isLoading ? <Loader2 className="h-4 w-4 animate-spin mr-1.5" /> : null}
         Checkout
        </Button>
       </div>

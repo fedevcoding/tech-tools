@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import tailwindConfig from "@/../tailwind.config";
-import { CartItem } from "@/hooks/use-cart";
+import tailwindConfig from "../../tailwind.config";
+import { CartItem } from "../hooks/use-cart";
 
 export function cn(...inputs: ClassValue[]) {
  return twMerge(clsx(inputs));
@@ -34,3 +34,13 @@ export const getCartTotal = (items: CartItem[]) => {
   0
  );
 };
+
+export function fmap<T, U>(data: T[], callback: (arg: T) => U | undefined) {
+ return data.reduce((accum, arg) => {
+  const x = callback(arg);
+  if (x !== undefined) {
+   accum.push(x);
+  }
+  return accum;
+ }, [] as U[]);
+}
