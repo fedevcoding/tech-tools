@@ -4,6 +4,7 @@ import { getPayloadClient } from "../get-payload";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import payload from "payload";
+import { getServerSideUser } from "../lib/payload-utils";
 
 export const authRouter = router({
  createPayloadUser: publicProcedure
@@ -71,6 +72,14 @@ export const authRouter = router({
     throw new TRPCError({ code: "UNAUTHORIZED" });
    }
   }),
+ isSignedIn: publicProcedure.query(async ({ ctx: { req } }) => {
+  try {
+   const { user } = await getServerSideUser(req.cookies);
+   return { signedIn: !!user };
+  } catch (err) {
+   return { signedIn: false };
+  }
+ }),
 });
 
 export type AuthRouter = typeof authRouter;

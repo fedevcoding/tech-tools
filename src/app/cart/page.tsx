@@ -13,6 +13,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
+ const { data: auth } = trpc.auth.isSignedIn.useQuery();
+
  const router = useRouter();
  const { mutate: createCheckoutSession, isLoading } =
   trpc.payment.createSession.useMutation({
@@ -126,17 +128,28 @@ const Page = () => {
       </div>
 
       <div className="mt-6">
-       <Button
-        onClick={() => {
-         createCheckoutSession({ products });
-        }}
-        disabled={items.length === 0 || isLoading}
-        className="w-full"
-        size="lg"
-       >
-        {isLoading ? <Loader2 className="h-4 w-4 animate-spin mr-1.5" /> : null}
-        Checkout
-       </Button>
+       {auth?.signedIn ? (
+        <Button
+         onClick={() => {
+          createCheckoutSession({ products });
+         }}
+         disabled={items.length === 0 || isLoading}
+         className="w-full"
+         size="lg"
+        >
+         {isLoading ? (
+          <Loader2 className="h-4 w-4 animate-spin mr-1.5" />
+         ) : null}
+         Checkout
+        </Button>
+       ) : (
+        <Link
+         href="/sign-in?origin=cart"
+         className={`w-full ${buttonVariants()}`}
+        >
+         Sign in to checkout
+        </Link>
+       )}
       </div>
      </section>
     </div>

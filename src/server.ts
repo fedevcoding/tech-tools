@@ -4,6 +4,9 @@ import express from "express";
 import { getPayloadClient } from "./get-payload";
 import { nextApp, nextHandler } from "./next-utils";
 import { inferAsyncReturnType } from "@trpc/server";
+import { stripeWebhookHandler } from "./webhooks";
+import { BASE_URL } from "./constants";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -16,6 +19,8 @@ const createContext = ({
 export type ExpressContext = inferAsyncReturnType<typeof createContext>;
 
 const start = async () => {
+ app.use(cookieParser());
+ app.post("/api/webhooks/stripe", stripeWebhookHandler);
  const payload = await getPayloadClient({
   initOptions: {
    express: app,
@@ -30,9 +35,9 @@ const start = async () => {
  ),
   app.use((req, res) => nextHandler(req, res));
  nextApp.prepare().then(() => {
-  //   payload.logger.info("Nextjs started");
+  payload.logger.info("Nextjs started");
   app.listen(PORT, async () => {
-   //    payload.logger.info(`Nextjs app URL: ${BASE_URL}`);
+   payload.logger.info(`Nextjs app URL: ${BASE_URL}`);
   });
  });
 };
