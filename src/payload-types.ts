@@ -103,12 +103,20 @@ export interface Media {
 export interface Order {
   id: string;
   _isPaid: boolean;
+  city?: string | null;
+  country?: string | null;
+  line1?: string | null;
+  line2?: string | null;
+  postal_code?: string | null;
+  state?: string | null;
+  name?: string | null;
   user: string | User;
   products?:
     | {
         amount: number;
         product: string | Product;
         price: number;
+        status?: ('pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled') | null;
         id?: string | null;
       }[]
     | null;

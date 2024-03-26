@@ -4,7 +4,7 @@ import { TRPCError } from "@trpc/server";
 import { getPayloadClient } from "../get-payload";
 import { stripe } from "../lib/stripe";
 import Stripe from "stripe";
-import { BASE_URL } from "../constants";
+import { BASE_URL, STRIPE_SUPPORTED_COUNTRIES } from "../constants";
 import { fmap } from "../lib/utils";
 
 const inputSchema = z.object({
@@ -86,6 +86,9 @@ export const paymentRouter = router({
      metadata: {
       userId: user.id,
       orderId: order.id,
+     },
+     shipping_address_collection: {
+      allowed_countries: STRIPE_SUPPORTED_COUNTRIES,
      },
      line_items,
     });

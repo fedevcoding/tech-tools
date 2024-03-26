@@ -72,8 +72,7 @@ const Page = () => {
 
       <ul
        className={cn({
-        "divide-y divide-gray-200 border-b border-t":
-         isMounted && items.length > 0,
+        "divide-y border-b border-t": isMounted && items.length > 0,
        })}
       >
        {isMounted &&

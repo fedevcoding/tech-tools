@@ -64,10 +64,20 @@ export const stripeWebhookHandler = async (
 
   if (!order) return res.status(404).json({ error: "No such order exists." });
 
+  const { name, address } = event.data.object.shipping_details || {};
+  const { city, country, line1, line2, postal_code, state } = address || {};
+
   await payload.update({
    collection: "orders",
    data: {
     _isPaid: true,
+    city,
+    country,
+    line1,
+    line2,
+    postal_code,
+    state,
+    name,
    },
    where: {
     id: {

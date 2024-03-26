@@ -79,7 +79,7 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
        <div className="text-muted-foreground">Order nr.</div>
        <div className="mt-2">{order.id}</div>
 
-       <ul className="mt-6 divide-y divide-gray-200 border-t text-sm font-medium text-muted-foreground">
+       <ul className="mt-6 divide-y border-t text-sm font-medium text-muted-foreground">
         {orders.map((order) => {
          const product = order.product as Product;
          const { image } = product.images[0];

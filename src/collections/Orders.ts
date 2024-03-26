@@ -40,6 +40,41 @@ export const Orders: CollectionConfig = {
    required: true,
   },
   {
+   name: "city",
+   type: "text",
+   required: false,
+  },
+  {
+   name: "country",
+   type: "text",
+   required: false,
+  },
+  {
+   name: "line1",
+   type: "text",
+   required: false,
+  },
+  {
+   name: "line2",
+   type: "text",
+   required: false,
+  },
+  {
+   name: "postal_code",
+   type: "text",
+   required: false,
+  },
+  {
+   name: "state",
+   type: "text",
+   required: false,
+  },
+  {
+   name: "name",
+   type: "text",
+   required: false,
+  },
+  {
    name: "user",
    type: "relationship",
    admin: {
