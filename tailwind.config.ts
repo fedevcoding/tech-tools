@@ -1,6 +1,6 @@
-import type { Config } from "tailwindcss";
-
-const config = {
+const { defaultGray } = require("./src/constants");
+/** @type {import('tailwindcss').Config} */
+module.exports = {
  darkMode: ["class"],
  content: [
   "./pages/**/*.{ts,tsx}",
@@ -22,7 +22,7 @@ const config = {
     "3xl": "1780px",
    },
    colors: {
-    defaultGray: "rgb(55 65 81)",
+    defaultGray,
     border: "hsl(var(--border))",
     input: "hsl(var(--input))",
     ring: "hsl(var(--ring))",
@@ -79,6 +79,4 @@ const config = {
   },
  },
  plugins: [require("tailwindcss-animate")],
-} satisfies Config;
-
-export default config;
+};

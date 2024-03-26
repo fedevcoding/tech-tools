@@ -1,13 +1,10 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import tailwindConfig from "../../tailwind.config";
 import { CartItem } from "../hooks/use-cart";
 
 export function cn(...inputs: ClassValue[]) {
  return twMerge(clsx(inputs));
 }
-
-export const tailwindColors = { ...tailwindConfig.theme.extend.colors };
 
 export function formatPrice(
  price: number | string,

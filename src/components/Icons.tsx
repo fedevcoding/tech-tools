@@ -1,4 +1,4 @@
-import { tailwindColors } from "@/lib/utils";
+import { defaultGray } from "@/constants";
 import {
  LucideProps,
  Bell,
@@ -56,16 +56,10 @@ export const Icons = {
    />
   </svg>
  ),
- bell: (props: LucideProps) => (
-  <Bell color={tailwindColors.defaultGray} {...props} />
- ),
- cart: (props: LucideProps) => (
-  <ShoppingCart color={tailwindColors.defaultGray} {...props} />
- ),
+ bell: (props: LucideProps) => <Bell color={defaultGray} {...props} />,
+ cart: (props: LucideProps) => <ShoppingCart color={defaultGray} {...props} />,
  profile: (props: LucideProps) => (
-  <CircleUserRound color={tailwindColors.defaultGray} {...props} />
+  <CircleUserRound color={defaultGray} {...props} />
  ),
- search: (props: LucideProps) => (
-  <Search color={tailwindColors.defaultGray} {...props} />
- ),
+ search: (props: LucideProps) => <Search color={defaultGray} {...props} />,
 };

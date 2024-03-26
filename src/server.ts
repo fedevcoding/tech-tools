@@ -7,6 +7,8 @@ import { inferAsyncReturnType } from "@trpc/server";
 import { stripeWebhookHandler } from "./webhooks";
 import { BASE_URL } from "./constants";
 import cookieParser from "cookie-parser";
+import nextBuild from "next/dist/build";
+import path from "path";
 
 const app = express();
 
@@ -20,7 +22,9 @@ export type ExpressContext = inferAsyncReturnType<typeof createContext>;
 
 const start = async () => {
  app.use(cookieParser());
+
  app.post("/api/webhooks/stripe", stripeWebhookHandler);
+
  const payload = await getPayloadClient({
   initOptions: {
    express: app,
@@ -29,11 +33,30 @@ const start = async () => {
    },
   },
  });
+
+ if (process.env.NEXT_BUILD) {
+  app.listen(PORT, async () => {
+   payload.logger.info("Next.js is building for production");
+
+   // @ts-expect-error
+   await nextBuild(path.join(__dirname, "../"));
+
+   process.exit();
+  });
+
+  return;
+ }
+
  app.use(
   "/api/trpc",
-  trpcExpress.createExpressMiddleware({ router: appRouter, createContext })
- ),
-  app.use((req, res) => nextHandler(req, res));
+  trpcExpress.createExpressMiddleware({
+   router: appRouter,
+   createContext,
+  })
+ );
+
+ app.use((req, res) => nextHandler(req, res));
+
  nextApp.prepare().then(() => {
   payload.logger.info("Nextjs started");
   app.listen(PORT, async () => {
