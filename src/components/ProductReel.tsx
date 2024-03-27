@@ -5,6 +5,16 @@ import { Product } from "@/payload-types";
 import { trpc } from "@/trpc/client";
 import ProductListing from "./ProductListing";
 import { Button } from "./ui/button";
+import {
+ Select,
+ SelectContent,
+ SelectItem,
+ SelectTrigger,
+ SelectValue,
+} from "@/components/ui/select";
+import { Input } from "./ui/input";
+import { SORT_BY_TYPES, SORT_TYPES, useFilters } from "@/hooks/use-filters";
+import { useRef } from "react";
 
 interface ProductReelProps {
  title: string;
@@ -16,6 +26,9 @@ interface ProductReelProps {
 const FALLBACK_LIMIT = 12;
 
 const ProductReel = (props: ProductReelProps) => {
+ const minRef = useRef<HTMLInputElement>(null);
+ const maxRef = useRef<HTMLInputElement>(null);
+
  const { title, subtitle, query, filter = true } = props;
 
  const { data: queryResults, isLoading } =
@@ -30,6 +43,7 @@ const ProductReel = (props: ProductReelProps) => {
   );
 
  const products = queryResults?.pages.flatMap((page) => page.items);
+ const { setSort, setSortBy, setPrice } = useFilters();
 
  let map: (Product | null)[] = [];
  if (products && products.length) {
@@ -50,7 +64,43 @@ const ProductReel = (props: ProductReelProps) => {
      ) : null}
     </div>
 
-    {filter && <Button variant={"outline"}>Filters</Button>}
+    {filter && (
+     <div className="flex items-center gap-10">
+      <div className="flex items-center gap-4">
+       <Input placeholder="Min" className="w-16" ref={minRef} />
+       <Input placeholder="Max" className="w-16" ref={maxRef} />
+       <Button
+        onClick={() => {
+         setPrice({
+          min: Number(minRef.current?.value),
+          max: Number(maxRef.current?.value),
+         });
+        }}
+       >
+        Apply
+       </Button>
+      </div>
+      <div className="flex items-center">
+       <Select
+        onValueChange={(v) => {
+         const [sortBy, sort] = v.split("-") as [SORT_BY_TYPES, SORT_TYPES];
+         setSort(sort);
+         setSortBy(sortBy);
+        }}
+       >
+        <SelectTrigger className="w-[180px]">
+         <SelectValue placeholder="Order by" />
+        </SelectTrigger>
+        <SelectContent>
+         <SelectItem value="price-desc">Price desc</SelectItem>
+         <SelectItem value="price-asc">Price asc</SelectItem>
+         <SelectItem value="name-desc">Name desc</SelectItem>
+         <SelectItem value="name-asc">Name asc</SelectItem>
+        </SelectContent>
+       </Select>
+      </div>
+     </div>
+    )}
    </div>
 
    <div className="relative">

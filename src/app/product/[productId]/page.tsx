@@ -126,6 +126,7 @@ const Page = async ({ params: { productId } }: PageProps) => {
 
    <ProductReel
     query={{ sort: "desc", limit: 6 }}
+    filter={false}
     title={`Similar `}
     subtitle={`Browse similar high-quality products just like '${product.name}'`}
    />

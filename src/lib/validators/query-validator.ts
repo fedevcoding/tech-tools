@@ -2,8 +2,15 @@ import { z } from "zod";
 
 export const QueryValidator = z.object({
  category: z.string().optional(),
- sort: z.enum(["asc", "desc"]),
+ sort: z.enum(["asc", "desc"]).optional(),
+ sortBy: z.enum(["price", "name"]).optional(),
  limit: z.number().optional(),
+ price: z
+  .object({
+   min: z.number().nullable(),
+   max: z.number().nullable(),
+  })
+  .optional(),
 });
 
 export type TQyeryValidator = z.infer<typeof QueryValidator>;

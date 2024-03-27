@@ -18,7 +18,7 @@ export const appRouter = router({
   )
   .query(async ({ input }) => {
    const { query, cursor } = input;
-   const { sort, limit, ...queryOpts } = query;
+   const { sort, limit, sortBy, price, ...queryOpts } = query;
 
    const payload = await getPayloadClient();
 
@@ -39,8 +39,22 @@ export const appRouter = router({
     collection: "products",
     where: {
      ...parsedQueryOpts,
+     and: [
+      {
+       price: {
+        ...(price?.min ? { greater_than_equal: price.min } : {}),
+       },
+      },
+      {
+       price: {
+        ...(price?.max ? { less_than_equal: price.max } : {}),
+       },
+      },
+     ],
     },
-    sort,
+    ...(sortBy && sort
+     ? { sort: `${sort === "asc" ? "" : "-"}${sortBy}` }
+     : {}),
     depth: 1,
     limit,
     page,
