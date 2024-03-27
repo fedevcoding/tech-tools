@@ -19,11 +19,14 @@ const Page = () => {
  const { mutate: createCheckoutSession, isLoading } =
   trpc.payment.createSession.useMutation({
    onSuccess: ({ url }) => {
-    if (url) router.push(url);
+    if (url) {
+     clearCart();
+     router.push(url);
+    }
    },
   });
 
- const { items } = useCart();
+ const { items, clearCart } = useCart();
  const isMounted = useMounted();
  const cartTotal = getCartTotal(items);
 
