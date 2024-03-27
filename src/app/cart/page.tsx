@@ -3,7 +3,6 @@
 import CartItem from "@/components/CartItem";
 import { Icons } from "@/components/Icons";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { FEE_COST } from "@/constants";
 import { useCart } from "@/hooks/use-cart";
 import { useMounted } from "@/hooks/use-mounted";
 import { cn, formatPrice, getCartTotal } from "@/lib/utils";
@@ -105,23 +104,10 @@ const Page = () => {
        </div>
 
        <div className="flex items-center justify-between border-t pt-4">
-        <div className="flex items-center text-sm text-muted-foreground">
-         <span>Flat Transaction Fee</span>
-        </div>
-        <div className="text-sm font-medium">
-         {isMounted ? (
-          formatPrice(FEE_COST)
-         ) : (
-          <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
-         )}
-        </div>
-       </div>
-
-       <div className="flex items-center justify-between border-t pt-4">
         <div className="text-base font-medium">Order Total</div>
         <div className="text-base font-medium">
          {isMounted ? (
-          formatPrice(cartTotal + FEE_COST)
+          formatPrice(cartTotal)
          ) : (
           <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
          )}

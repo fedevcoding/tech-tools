@@ -6,7 +6,6 @@ import { notFound, redirect } from "next/navigation";
 import { Product, User } from "@/payload-types";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
-import { FEE_COST } from "@/constants";
 import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/Icons";
 import PaymentStatus from "@/components/PaymentStatus";
@@ -116,14 +115,9 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
          <p>{formatPrice(orderTotal)}</p>
         </div>
 
-        <div className="flex justify-between">
-         <p>Transaction Fee</p>
-         <p>{formatPrice(FEE_COST)}</p>
-        </div>
-
         <div className="flex items-center justify-between border-t pt-6">
          <p className="text-base">Total</p>
-         <p className="text-base">{formatPrice(orderTotal + FEE_COST)}</p>
+         <p className="text-base">{formatPrice(orderTotal)}</p>
         </div>
        </div>
 

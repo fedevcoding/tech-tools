@@ -15,7 +15,6 @@ import { buttonVariants } from "./ui/button";
 import CartItem from "./CartItem";
 import { Separator } from "./ui/separator";
 import { ScrollArea } from "./ui/scroll-area";
-import { FEE_COST } from "@/constants";
 
 const Cart = () => {
  const { items } = useCart();
@@ -52,12 +51,8 @@ const Cart = () => {
          <span>Free</span>
         </div>
         <div className="flex">
-         <span className="flex-1">Transaction Fee</span>
-         <span>{formatPrice(FEE_COST)}</span>
-        </div>
-        <div className="flex">
          <span className="flex-1">Total</span>
-         <span>{formatPrice(cartTotal + FEE_COST)}</span>
+         <span>{formatPrice(cartTotal)}</span>
         </div>
        </div>
 
