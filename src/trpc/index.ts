@@ -18,11 +18,18 @@ export const appRouter = router({
   )
   .query(async ({ input }) => {
    const { query, cursor } = input;
-   const { sort, limit } = query;
+   const { sort, limit, ...queryOpts } = query;
 
    const payload = await getPayloadClient();
 
    const page = cursor || 1;
+
+   const parsedQueryOpts: Record<string, { equals: string }> = {};
+   Object.entries(queryOpts).forEach(([key, value]) => {
+    parsedQueryOpts[key] = {
+     equals: value,
+    };
+   });
 
    const {
     docs: items,
@@ -30,6 +37,9 @@ export const appRouter = router({
     nextPage,
    } = await payload.find({
     collection: "products",
+    where: {
+     ...parsedQueryOpts,
+    },
     sort,
     depth: 1,
     limit,

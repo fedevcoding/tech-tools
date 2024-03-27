@@ -1,3 +1,4 @@
+import { PROUCT_CATEGORIES } from "../../constants";
 import { stripe } from "../../lib/stripe";
 import { Product } from "../../payload-types";
 import { BeforeChangeHook } from "payload/dist/collections/config/types";
@@ -73,6 +74,18 @@ export const Products: CollectionConfig = {
    type: "number",
    min: 0,
    required: true,
+  },
+  {
+   name: "category",
+   label: "Category",
+   type: "select",
+   defaultValue: "all",
+   required: true,
+   hasMany: true,
+   options: PROUCT_CATEGORIES.map(({ name, value }) => ({
+    label: name,
+    value,
+   })),
   },
   {
    name: "priceId",

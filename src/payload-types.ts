@@ -46,6 +46,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
+  category: ('all' | 'bluetooth-and-usb' | 'smart-home')[];
   priceId?: string | null;
   stripeId?: string | null;
   images: {

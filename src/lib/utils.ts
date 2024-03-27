@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { CartItem } from "../hooks/use-cart";
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
  return twMerge(clsx(inputs));

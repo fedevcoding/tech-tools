@@ -239,3 +239,18 @@ export const STRIPE_SUPPORTED_COUNTRIES: any = [
  "ZW",
  "ZZ",
 ] as const;
+
+export const PROUCT_CATEGORIES = [
+ {
+  name: "All",
+  value: "all",
+ },
+ {
+  name: "Bluetooth and USB",
+  value: "bluetooth-and-usb",
+ },
+ {
+  name: "Smart home",
+  value: "smart-home",
+ },
+] as const;
