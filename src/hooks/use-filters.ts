@@ -18,17 +18,20 @@ type FiltersState = {
   min: number | null;
   max: number | null;
  };
+ search: string | null;
 
  setPrice: (price: { min: number | null; max: number | null }) => void;
  setCategory: (category: string) => void;
  setSort: (sort: SORT_TYPES) => void;
  setSortBy: (sortBy: SORT_BY_TYPES) => void;
+ setSearch: (search: string | null) => void;
 };
 
 export const useFilters = create<FiltersState>((set) => ({
  category: "all",
  sort: "asc",
  sortBy: "price",
+ search: null,
  price: {
   min: null,
   max: null,
@@ -37,4 +40,5 @@ export const useFilters = create<FiltersState>((set) => ({
  setSortBy: (sortBy) => set({ sortBy }),
  setCategory: (category) => set({ category }),
  setSort: (sort) => set({ sort }),
+ setSearch: (search) => set({ search }),
 }));

@@ -5,16 +5,16 @@ import Sidebar from "@/components/Sidebar";
 import { useFilters } from "@/hooks/use-filters";
 
 export default function Home() {
- const { category, sortBy, sort, price } = useFilters();
+ const { category, sortBy, sort, price, search } = useFilters();
 
  return (
   <MaxWidthWrapper>
    <div className="flex">
     <Sidebar />
     <ProductReel
-     query={{ sort, limit: 18, category, sortBy, price }}
-     title="Top sellers"
-     subtitle="Explore our most popular products."
+     query={{ sort, limit: 18, category, sortBy, price, search }}
+     title={`${search ? `Search results for "${search}"` : "Popular Products"}`}
+     subtitle="Explore our best top quality products."
     />
    </div>
   </MaxWidthWrapper>

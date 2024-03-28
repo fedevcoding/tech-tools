@@ -7,6 +7,7 @@ import { getServerSideUser } from "@/lib/payload-utils";
 import { cookies } from "next/headers";
 import { buttonVariants } from "./ui/button";
 import UserAccountNav from "./UserAccountNav";
+import SearchBar from "./Searchbar";
 
 const Navbar = async () => {
  const nextCookies = cookies();
@@ -22,11 +23,7 @@ const Navbar = async () => {
        <h1 className="text-2xl">TechTools</h1>
       </Link>
       <div className="relative w-96">
-       <Input
-        className="w-full"
-        placeholder="Search for the product you want"
-       />
-       <Icons.search className="absolute right-4 top-[50%] translate-y-[-50%]" />
+       <SearchBar />
       </div>
       <div className="flex items-center gap-12">
        <Icons.bell size={32} className="cursor-pointer" />

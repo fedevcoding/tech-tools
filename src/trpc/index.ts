@@ -18,18 +18,11 @@ export const appRouter = router({
   )
   .query(async ({ input }) => {
    const { query, cursor } = input;
-   const { sort, limit, sortBy, price, ...queryOpts } = query;
+   const { sort, limit, sortBy, price, category, search, ...queryOpts } = query;
 
    const payload = await getPayloadClient();
 
    const page = cursor || 1;
-
-   const parsedQueryOpts: Record<string, { equals: string }> = {};
-   Object.entries(queryOpts).forEach(([key, value]) => {
-    parsedQueryOpts[key] = {
-     equals: value,
-    };
-   });
 
    const {
     docs: items,
@@ -38,7 +31,15 @@ export const appRouter = router({
    } = await payload.find({
     collection: "products",
     where: {
-     ...parsedQueryOpts,
+     category: { ...(category ? { equals: category } : {}) },
+     or: [
+      {
+       name: { ...(search ? { like: search } : {}) },
+      },
+      {
+       description: { ...(search ? { like: search } : {}) },
+      },
+     ],
      and: [
       {
        price: {
