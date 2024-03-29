@@ -21,6 +21,9 @@ module.exports = {
    screens: {
     "3xl": "1780px",
    },
+   height: {
+    "main-page": "calc(100vh - 5rem)",
+   },
    colors: {
     defaultGray,
     border: "hsl(var(--border))",

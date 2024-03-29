@@ -27,7 +27,7 @@ const Sidebar = () => {
  );
 
  return (
-  <div className="w-[15%] h-[calc(100vh-5rem)] flex flex-col py-10 gap-y-12 overflow-y-scroll border-r-defaultGray border-r-2">
+  <div className="w-[15%] h-main-page flex flex-col py-10 gap-y-12 overflow-y-scroll border-r-defaultGray border-r-2">
    <h1 className="text-2xl font-bold">Categories</h1>
    {PROUCT_CATEGORIES.map(({ value, name }) => (
     <Link
