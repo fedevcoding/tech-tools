@@ -1,3 +1,4 @@
+import { PrimaryActionEmailHtml } from "../components/emails/Primary";
 import { BASE_URL } from "../constants";
 import { CollectionConfig } from "payload/types";
 
@@ -10,8 +11,11 @@ export const Users: CollectionConfig = {
  auth: {
   verify: {
    generateEmailHTML: ({ token }) => {
-    // TODO: make the message nicier
-    return `<a href='${BASE_URL}/verify-email?token=${token}'>Verify now</a>`;
+    return PrimaryActionEmailHtml({
+     actionLabel: "verify your account",
+     buttonText: "Verify Account",
+     href: `${BASE_URL}/verify-email?token=${token}`,
+    });
    },
   },
  },

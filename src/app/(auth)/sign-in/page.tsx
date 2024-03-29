@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { trpc } from "@/trpc/client";
 import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 const Page = () => {
  const searchParams = useSearchParams();
@@ -24,7 +25,7 @@ const Page = () => {
  const { mutate } = trpc.auth.signIn.useMutation({
   onError: (err) => {
    if (err.data?.code === "UNAUTHORIZED") {
-    toast.error("Invalid email or password");
+    toast.error("Invalid email/password or email not verified");
    }
   },
   onSuccess: () => {
@@ -60,7 +61,6 @@ const Page = () => {
       <Icons.logo />
 
       <h1 className="text-3xl font-semibold">Sign in to your account</h1>
-
       <Link
        href={"/sign-up"}
        className={buttonVariants({ variant: "link", className: " gap-1.5" })}
