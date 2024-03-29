@@ -32,8 +32,8 @@ const Sidebar = () => {
    {PROUCT_CATEGORIES.map(({ value, name }) => (
     <Link
      key={value}
-     className={cn("text-white text-sm", {
-      "font-bold": value === selectedCategory,
+     className={cn("text-muted-foreground text-sm tracking-wide", {
+      "font-bold text-white": value === selectedCategory,
      })}
      href={`/?${createQueryString("category", value)}`}
     >
