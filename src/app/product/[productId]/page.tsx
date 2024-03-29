@@ -9,12 +9,11 @@ import {
  BreadcrumbPage,
  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, getCategory } from "@/lib/utils";
 import { Check, Shield } from "lucide-react";
 import ImageSlider from "@/components/ImageSlider";
 import ProductReel from "@/components/ProductReel";
 import AddToCartButton from "@/components/AddToCartButton";
-import Link from "next/link";
 
 type PageProps = {
  params: {
@@ -36,6 +35,8 @@ const Page = async ({ params: { productId } }: PageProps) => {
   limit: 1,
  });
 
+ console.log(product);
+
  if (!product) {
   return notFound();
  }
@@ -43,11 +44,6 @@ const Page = async ({ params: { productId } }: PageProps) => {
  const validUrls = product.images
   .map(({ image }) => (typeof image === "string" ? image : image.url))
   .filter(Boolean) as string[];
-
- const BREADCRUMBS = [
-  { id: 1, name: "Home", href: "/" },
-  { id: 2, name: "Products", href: "/products" },
- ];
 
  return (
   <MaxWidthWrapper>
@@ -79,7 +75,7 @@ const Page = async ({ params: { productId } }: PageProps) => {
        <div className="flex items-center">
         <p className="font-medium">{formatPrice(product.price)}</p>
         <div className="ml-4 border-l text-muted-foreground border-gray-300 pl-4">
-         {"label"}
+         {getCategory(product.category)}
         </div>
        </div>
        <div className="mt-4 space-y-6">
@@ -91,7 +87,7 @@ const Page = async ({ params: { productId } }: PageProps) => {
          className="h-5 w-5 flex-shrink-0 text-green-500"
         />
         <p className="ml-2 text-sm text-muted-foreground">
-         Eligible for instant delivery
+         Free and Fast Shipping
         </p>
        </div>
       </section>
@@ -125,9 +121,9 @@ const Page = async ({ params: { productId } }: PageProps) => {
    </div>
 
    <ProductReel
-    query={{ sort: "desc", limit: 6 }}
+    query={{ sort: "desc", limit: 6, category: getCategory(product.category) }}
     filter={false}
-    title={`Similar `}
+    title={`Similar`}
     subtitle={`Browse similar high-quality products just like '${product.name}'`}
    />
   </MaxWidthWrapper>

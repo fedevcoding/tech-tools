@@ -42,3 +42,11 @@ export function fmap<T, U>(data: T[], callback: (arg: T) => U | undefined) {
   return accum;
  }, [] as U[]);
 }
+
+export const getCategory = (category: string | string[]): string => {
+ if (Array.isArray(category)) {
+  const filtered = category.filter((cat) => cat !== "all");
+  return filtered[0] || "all";
+ }
+ return category;
+};
