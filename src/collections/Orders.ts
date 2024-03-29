@@ -84,6 +84,11 @@ export const Orders: CollectionConfig = {
    required: true,
   },
   {
+   name: "shipping_id",
+   type: "text",
+   required: false,
+  },
+  {
    name: "products",
    type: "array",
    fields: [
