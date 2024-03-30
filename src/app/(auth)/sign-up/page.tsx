@@ -95,6 +95,12 @@ const Page = () => {
           <p className="text-sm text-red-500">{errors.password.message}</p>
          )}
         </div>
+        <Link
+         href={"/resend-verification"}
+         className={buttonVariants({ variant: "link" })}
+        >
+         Didn&apos;t received email verification?
+        </Link>
         <Button>SIGN UP</Button>
        </div>
       </form>

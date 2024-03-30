@@ -5,8 +5,36 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import payload from "payload";
 import { getServerSideUser } from "../lib/payload-utils";
+import { getVerifyEmail } from "../getEmailData";
 
 export const authRouter = router({
+ resendVerificationEmail: publicProcedure
+  .input(z.object({ email: z.string() }))
+  .mutation(async ({ input }) => {
+   const { email } = input;
+
+   const { docs: users } = await payload.find({
+    collection: "users",
+    where: {
+     email: {
+      equals: email,
+     },
+    },
+    showHiddenFields: true,
+   });
+
+   if (users.length === 0 || users[0]._verified)
+    throw new TRPCError({ code: "BAD_REQUEST" });
+
+   const user = users[0];
+   const { _verificationToken } = user;
+
+   await payload.sendEmail(
+    getVerifyEmail({ to: email, token: _verificationToken! })
+   );
+
+   return { sentToEmail: email };
+  }),
  createPayloadUser: publicProcedure
   .input(AuthCredentialsValidator)
   .mutation(async ({ input }) => {

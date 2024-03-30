@@ -9,3 +9,10 @@ export const AuthCredentialsValidator = z.object({
 export type TAuthCredentialsValidator = z.infer<
  typeof AuthCredentialsValidator
 >;
+
+export const EmailCredentialsValidator = z.object({
+ email: z.string().email(),
+});
+export type TEmailCredentialsValidator = z.infer<
+ typeof EmailCredentialsValidator
+>;

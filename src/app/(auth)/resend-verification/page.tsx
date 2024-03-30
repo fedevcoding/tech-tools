@@ -1,16 +1,15 @@
 "use client";
 
 import { Icons } from "@/components/Icons";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import {
- AuthCredentialsValidator,
- TAuthCredentialsValidator,
+ EmailCredentialsValidator,
+ TEmailCredentialsValidator,
 } from "@/lib/validators/account-validators";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { trpc } from "@/trpc/client";
 import { toast } from "sonner";
@@ -21,22 +20,16 @@ const Page = () => {
  const router = useRouter();
  const origin = searchParams.get("origin");
 
- const { mutate } = trpc.auth.signIn.useMutation({
+ const { mutate } = trpc.auth.resendVerificationEmail.useMutation({
   onError: (err) => {
-   if (err.data?.code === "UNAUTHORIZED") {
+   if (err.data?.code === "BAD_REQUEST") {
     toast.error("Invalid email/password or email not verified");
    }
   },
-  onSuccess: () => {
-   toast.success("Signed in successfully");
+  onSuccess: ({ sentToEmail }) => {
+   toast.success("Email sent successfully");
 
-   if (origin) {
-    router.push(`/${origin}`);
-    router.refresh();
-    return;
-   }
-   router.push("/");
-   router.refresh();
+   router.push(`/verify-email?to=${sentToEmail}`);
   },
  });
 
@@ -44,11 +37,11 @@ const Page = () => {
   register,
   handleSubmit,
   formState: { errors },
- } = useForm<TAuthCredentialsValidator>({
-  resolver: zodResolver(AuthCredentialsValidator),
+ } = useForm<TEmailCredentialsValidator>({
+  resolver: zodResolver(EmailCredentialsValidator),
  });
 
- const onSubmit = (data: TAuthCredentialsValidator) => {
+ const onSubmit = (data: TEmailCredentialsValidator) => {
   mutate(data);
  };
 
@@ -59,13 +52,7 @@ const Page = () => {
      <div className="flex flex-col items-center space-y-2 text-center">
       <Icons.logo />
 
-      <h1 className="text-3xl font-semibold">Sign in to your account</h1>
-      <Link
-       href={"/sign-up"}
-       className={buttonVariants({ variant: "link", className: " gap-1.5" })}
-      >
-       Don&apos;t have an account?
-      </Link>
+      <h1 className="text-3xl font-semibold">Resend verification email</h1>
      </div>
 
      <div className="grid gap-6">
@@ -82,25 +69,7 @@ const Page = () => {
           <p className="text-sm text-red-500">{errors.email.message}</p>
          )}
         </div>
-        <div className="grid gap-2 py-1">
-         <Label htmlFor="password">Password</Label>
-         <Input
-          {...register("password")}
-          type="password"
-          className={cn({ "focus-visible:ring-red-500": errors.password })}
-          placeholder="Password"
-         />
-         {errors?.password && (
-          <p className="text-sm text-red-500">{errors.password.message}</p>
-         )}
-        </div>
-        <Link
-         href={"/resend-verification"}
-         className={buttonVariants({ variant: "link" })}
-        >
-         Didn&apos;t received email verification?
-        </Link>
-        <Button>SIGN IN</Button>
+        <Button>SEND</Button>
        </div>
       </form>
      </div>

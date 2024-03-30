@@ -1,5 +1,7 @@
 import { Icons } from "@/components/Icons";
 import VerifyEmail from "@/components/VerifyEmail";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 type PageProps = {
  searchParams: {
@@ -33,6 +35,12 @@ const VerifyEmailPage = ({ searchParams }: PageProps) => {
       ) : (
        <p>We&apos;ve sent a verification link to your email</p>
       )}
+      <Link
+       href={"/resend-verification"}
+       className={buttonVariants({ variant: "link" })}
+      >
+       Didn&apos;t received email verification?
+      </Link>
      </div>
     )}
    </div>

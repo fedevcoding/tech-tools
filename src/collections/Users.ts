@@ -1,5 +1,4 @@
-import { PrimaryActionEmailHtml } from "../components/emails/Primary";
-import { BASE_URL } from "../constants";
+import { getVerifyEmail } from "../getEmailData";
 import { CollectionConfig } from "payload/types";
 
 const isAdmin = (param: any) => {
@@ -11,11 +10,7 @@ export const Users: CollectionConfig = {
  auth: {
   verify: {
    generateEmailHTML: ({ token }) => {
-    return PrimaryActionEmailHtml({
-     actionLabel: "verify your account",
-     buttonText: "Verify Account",
-     href: `${BASE_URL}/verify-email?token=${token}`,
-    });
+    return getVerifyEmail({ token }).html;
    },
   },
  },
