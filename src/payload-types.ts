@@ -112,15 +112,16 @@ export interface Order {
   state?: string | null;
   name?: string | null;
   user: string | User;
+  shipping_id?: string | null;
   products?:
     | {
         amount: number;
         product: string | Product;
         price: number;
-        status?: ('pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled') | null;
         id?: string | null;
       }[]
     | null;
+  status?: ('pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled') | null;
   updatedAt: string;
   createdAt: string;
 }

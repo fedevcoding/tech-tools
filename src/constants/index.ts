@@ -1,4 +1,5 @@
 export const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+export const SIGN_IN = `${BASE_URL}/sign-in`;
 export const defaultGray = "rgb(55 65 81)";
 export const STRIPE_SUPPORTED_COUNTRIES: any = [
  "AC",

@@ -35,8 +35,6 @@ const Page = async ({ params: { productId } }: PageProps) => {
   limit: 1,
  });
 
- console.log(product);
-
  if (!product) {
   return notFound();
  }
