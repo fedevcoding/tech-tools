@@ -1,15 +1,58 @@
-import { AuthCredentialsValidator } from "../lib/validators/account-validators";
+import {
+ AuthCredentialsValidator,
+ EmailCredentialsValidator,
+ ResetCredentialsValidator,
+} from "../lib/validators/account-validators";
 import { publicProcedure, router } from "./trpc";
 import { getPayloadClient } from "../get-payload";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import payload from "payload";
 import { getServerSideUser } from "../lib/payload-utils";
-import { getVerifyEmail } from "../getEmailData";
+import { getResetEmail, getVerifyEmail } from "../getEmailData";
 
 export const authRouter = router({
+ sendResetPasswordUrl: publicProcedure
+  .input(EmailCredentialsValidator)
+  .mutation(async ({ input }) => {
+   const { email } = input;
+   const payload = await getPayloadClient();
+
+   const token = await payload.forgotPassword({
+    disableEmail: true,
+    collection: "users",
+    data: {
+     email: email,
+    },
+   });
+
+   if (!token) {
+    throw new TRPCError({ code: "BAD_REQUEST" });
+   }
+
+   await payload.sendEmail(getResetEmail({ to: email, token }));
+
+   return { sentToEmail: email };
+  }),
+ resetPassword: publicProcedure
+  .input(ResetCredentialsValidator)
+  .mutation(async ({ input }) => {
+   const { token, password } = input;
+   const payload = await getPayloadClient();
+
+   await payload.resetPassword({
+    collection: "users",
+    data: {
+     password,
+     token,
+    },
+    overrideAccess: true,
+   });
+
+   return { success: true };
+  }),
  resendVerificationEmail: publicProcedure
-  .input(z.object({ email: z.string() }))
+  .input(EmailCredentialsValidator)
   .mutation(async ({ input }) => {
    const { email } = input;
 

@@ -8,7 +8,9 @@ export async function middleware(req: NextRequest) {
  const { user } = await getServerSideUser(cookies);
  if (
   user &&
-  ["/sign-in", "/sign-up", "/resend-verification"].includes(nextUrl.pathname)
+  ["/sign-in", "/sign-up", "/resend-verification", "/reset-password"].includes(
+   nextUrl.pathname
+  )
  ) {
   return NextResponse.redirect(BASE_URL!);
  } else if (!user && ["/orders"].includes(nextUrl.pathname)) {

@@ -95,10 +95,10 @@ const Page = () => {
          )}
         </div>
         <Link
-         href={"/resend-verification"}
+         href={"/reset-password"}
          className={buttonVariants({ variant: "link" })}
         >
-         Didn&apos;t received email verification?
+         Forgot password?
         </Link>
         <Button>SIGN IN</Button>
        </div>
