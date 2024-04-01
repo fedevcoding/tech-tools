@@ -3,20 +3,23 @@ import path from "path";
 import payload, { Payload } from "payload";
 import type { InitOptions } from "payload/config";
 import nodemailer from "nodemailer";
+import smtpTransport from "nodemailer-smtp-transport";
 
 dotenv.config({
  path: path.resolve(__dirname, "../.env"),
 });
 
-const transporter = nodemailer.createTransport({
- host: "smtp.resend.com",
- secure: true,
- port: 465,
- auth: {
-  user: "resend",
-  pass: process.env.RESEND_API_KEY,
- },
-});
+const transporter = nodemailer.createTransport(
+ smtpTransport({
+  host: "smtp.resend.com",
+  secure: true,
+  port: 465,
+  auth: {
+   user: "resend",
+   pass: process.env.RESEND_API_KEY,
+  },
+ })
+);
 
 let cached = (global as any).payload;
 
