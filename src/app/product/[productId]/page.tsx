@@ -9,7 +9,7 @@ import {
  BreadcrumbPage,
  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { formatPrice, getCategory } from "@/lib/utils";
+import { formatPrice, getCategory, validImageUrls } from "@/lib/utils";
 import { Check, Shield } from "lucide-react";
 import ImageSlider from "@/components/ImageSlider";
 import ProductReel from "@/components/ProductReel";
@@ -39,9 +39,7 @@ const Page = async ({ params: { productId } }: PageProps) => {
   return notFound();
  }
 
- const validUrls = product.images
-  .map(({ image }) => (typeof image === "string" ? image : image.url))
-  .filter(Boolean) as string[];
+ const validUrls = validImageUrls(product.images);
 
  return (
   <MaxWidthWrapper>

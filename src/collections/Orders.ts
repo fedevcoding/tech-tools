@@ -89,6 +89,11 @@ export const Orders: CollectionConfig = {
    required: false,
   },
   {
+   name: "tracking_number",
+   type: "text",
+   required: false,
+  },
+  {
    name: "products",
    type: "array",
    fields: [

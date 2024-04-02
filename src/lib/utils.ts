@@ -50,3 +50,11 @@ export const getCategory = (category: string | string[]): string => {
  }
  return category;
 };
+
+export const validImageUrls = (
+ images: { image: string | { url?: string | null } }[]
+): string[] => {
+ return images
+  .map(({ image }) => (typeof image === "string" ? image : image.url))
+  .filter(Boolean) as string[];
+};

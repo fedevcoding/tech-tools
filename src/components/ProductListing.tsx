@@ -4,7 +4,7 @@ import { Product } from "@/payload-types";
 import { useEffect, useState } from "react";
 import { Skeleton } from "./ui/skeleton";
 import Link from "next/link";
-import { cn, formatPrice } from "@/lib/utils";
+import { cn, formatPrice, validImageUrls } from "@/lib/utils";
 import ImageSlider from "./ImageSlider";
 
 interface ProductListingProps {
@@ -25,9 +25,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
 
  if (!product || !isVisible) return <ProductPlaceholder />;
 
- const validUrls = product.images
-  .map(({ image }) => (typeof image === "string" ? image : image.url))
-  .filter(Boolean) as string[];
+ const validUrls = validImageUrls(product.images);
 
  if (isVisible && product) {
   return (

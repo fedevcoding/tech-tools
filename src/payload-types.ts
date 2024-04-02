@@ -113,6 +113,7 @@ export interface Order {
   name?: string | null;
   user: string | User;
   shipping_id?: string | null;
+  tracking_number?: string | null;
   products?:
     | {
         amount: number;

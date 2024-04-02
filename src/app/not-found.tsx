@@ -6,7 +6,7 @@ import React from "react";
 function page() {
  return (
   <div className="container relative flex flex-col items-center justify-center gap-5 h-main-page">
-   <Icons.logo className="w-28 h-28" />
+   <Icons.logo className="w-32 h-32" />
 
    <h1 className="text-3xl font-semibold">This page could not be found :(</h1>
 
