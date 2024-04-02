@@ -15,12 +15,14 @@ import {
 import { Input } from "./ui/input";
 import { SORT_BY_TYPES, SORT_TYPES, useFilters } from "@/hooks/use-filters";
 import { useRef } from "react";
+import { cn } from "@/lib/utils";
 
 interface ProductReelProps {
  title: string;
  subtitle?: string;
  filter?: boolean;
  query: TQyeryValidator;
+ classNames?: string;
 }
 
 const FALLBACK_LIMIT = 12;
@@ -29,7 +31,7 @@ const ProductReel = (props: ProductReelProps) => {
  const minRef = useRef<HTMLInputElement>(null);
  const maxRef = useRef<HTMLInputElement>(null);
 
- const { title, subtitle, query, filter = true } = props;
+ const { title, subtitle, query, filter = true, classNames } = props;
 
  const { data: queryResults, isLoading } =
   trpc.getInfiniteProducts.useInfiniteQuery(
@@ -53,7 +55,7 @@ const ProductReel = (props: ProductReelProps) => {
  }
 
  return (
-  <section className="py-12 pl-10 flex-1">
+  <section className={cn("py-12 pl-10 flex-1", classNames)}>
    <div className="md:flex md:items-center md:justify-between mb-4">
     <div className="max-w-2xl px-4 lg:max-w-4xl lg:px-0">
      {title ? (

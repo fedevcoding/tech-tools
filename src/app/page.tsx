@@ -9,12 +9,13 @@ export default function Home() {
 
  return (
   <MaxWidthWrapper>
-   <div className="flex">
+   <div className="flex h-main-page">
     <Sidebar />
     <ProductReel
      query={{ sort, limit: 18, category, sortBy, price, search }}
      title={`${search ? `Search results for "${search}"` : "Popular Products"}`}
      subtitle="Explore our best top quality products."
+     classNames="h-full overflow-y-scroll"
     />
    </div>
   </MaxWidthWrapper>
