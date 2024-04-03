@@ -69,7 +69,8 @@ const Page = () => {
         const { name, images } = product;
         const validUrls = validImageUrls(images);
         return (
-         <div
+         <Link
+          href={`/product/${product.id}`}
           key={id}
           className="border-t-2 border-defaultGray py-4 flex items-center justify-between"
          >
@@ -104,7 +105,7 @@ const Page = () => {
             {formatPrice(price * amount)}
            </p>
           </div>
-         </div>
+         </Link>
         );
        })}
       </div>

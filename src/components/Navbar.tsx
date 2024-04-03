@@ -17,10 +17,10 @@ const Navbar = async () => {
   <div className="sticky z-50 top-0 h-20 border-b-2 border-defaultGray bg-background">
    <header className="relative">
     <MaxWidthWrapper>
-     <div className="flex items-center justify-between h-20">
+     <div className="flex items-center justify-between h-20 gap-10">
       <Link className="flex items-center" href={"/"}>
        <Icons.logo />
-       <h1 className="text-2xl">TechTools</h1>
+       <h1 className="text-2xl hidden md:block">TechTools</h1>
       </Link>
       <div className="relative w-96">
        <SearchBar />
