@@ -14,12 +14,36 @@ import { Check, Shield } from "lucide-react";
 import ImageSlider from "@/components/ImageSlider";
 import ProductReel from "@/components/ProductReel";
 import AddToCartButton from "@/components/AddToCartButton";
+import { Metadata } from "next";
 
 type PageProps = {
  params: {
   productId: string;
  };
 };
+
+export async function generateMetadata({
+ params,
+}: PageProps): Promise<Metadata> {
+ const { productId } = params;
+
+ const payload = await getPayloadClient();
+ const {
+  docs: [product],
+ } = await payload.find({
+  collection: "products",
+  where: {
+   id: {
+    equals: productId,
+   },
+  },
+  limit: 1,
+ });
+
+ return {
+  title: `TechTools | ${product.name}`,
+ };
+}
 
 const Page = async ({ params: { productId } }: PageProps) => {
  const payload = await getPayloadClient();
