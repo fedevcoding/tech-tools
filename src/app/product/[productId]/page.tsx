@@ -39,6 +39,11 @@ export async function generateMetadata({
   },
   limit: 1,
  });
+ if (!product) {
+  return {
+   title: `Product not found`,
+  };
+ }
 
  return {
   title: `TechTools | ${product.name}`,
@@ -60,7 +65,7 @@ const Page = async ({ params: { productId } }: PageProps) => {
  });
 
  if (!product) {
-  return notFound();
+  notFound();
  }
 
  const validUrls = validImageUrls(product.images);
