@@ -58,3 +58,8 @@ export const validImageUrls = (
   .map(({ image }) => (typeof image === "string" ? image : image.url))
   .filter(Boolean) as string[];
 };
+
+export const parseDate = (date: Date | string) => {
+ if (typeof date === "string") date = new Date(date);
+ return date.toDateString().split(" ").slice(1).join(" ");
+};

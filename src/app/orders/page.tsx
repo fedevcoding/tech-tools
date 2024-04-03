@@ -3,7 +3,7 @@
 import { Icons } from "@/components/Icons";
 import ImageSlider from "@/components/ImageSlider";
 import { Button } from "@/components/ui/button";
-import { formatPrice, validImageUrls } from "@/lib/utils";
+import { formatPrice, parseDate, validImageUrls } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import Link from "next/link";
 
@@ -48,10 +48,12 @@ const Page = () => {
       >
        <div className="flex justify-between items-center">
         <div className="flex items-center gap-2 py-7">
-         <div className="bg-defaultGray rounded-full py-2 px-3">
+         <div className="bg-defaultGray  rounded-full py-1 px-2 text-sm">
           Order <span className="text-muted-foreground">#{id}</span>
          </div>
-         <p className="text-muted-foreground">Order placed {createdAt}</p>
+         <p className="text-muted-foreground">
+          Order placed {parseDate(createdAt)}
+         </p>
         </div>
         <Button disabled={tracking_number == null}>
          <Link

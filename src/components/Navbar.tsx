@@ -26,7 +26,7 @@ const Navbar = async () => {
        <SearchBar />
       </div>
       <div className="flex items-center gap-12">
-       <Icons.bell size={32} className="cursor-pointer" />
+       {/* <Icons.bell size={32} className="cursor-pointer" /> */}
        <Cart />
        {!user ? (
         <Link
