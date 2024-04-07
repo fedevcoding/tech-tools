@@ -34,7 +34,7 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
  }, [swiper, urls]);
 
  const activeStyles =
-  "active:scale-[0.97] grid opacity-100 hover:scale-105 absolute top-1/2 -translate-y-1/2 aspect-square h-8 w-8 z-50 place-items-center rounded-full border-2 bg-white border-zinc-300";
+  "active:scale-[0.97] grid opacity-100 hover:scale-105 absolute top-1/2 -translate-y-1/2 aspect-square sm:h-8 sm:w-8 h-4 w-4 z-50 place-items-center rounded-full border-2 bg-white border-zinc-300";
  const inactiveStyles = "hidden text-gray-400";
 
  return (
@@ -51,7 +51,7 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
      })}
      aria-label="next image"
     >
-     <ChevronRight className="h-4 w-4 text-zinc-700" />{" "}
+     <ChevronRight className="sm:h-4 sm:w-4 h-2 w-2 text-zinc-700" />{" "}
     </button>
     <button
      onClick={(e) => {
@@ -65,7 +65,7 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
      })}
      aria-label="previous image"
     >
-     <ChevronLeft className="h-4 w-4 text-zinc-700" />{" "}
+     <ChevronLeft className="sm:h-4 sm:w-4 h-2 w-2 text-zinc-700" />{" "}
     </button>
    </div>
 
