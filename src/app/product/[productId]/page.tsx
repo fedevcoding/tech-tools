@@ -15,6 +15,7 @@ import ImageSlider from "@/components/ImageSlider";
 import ProductReel from "@/components/ProductReel";
 import AddToCartButton from "@/components/AddToCartButton";
 import { Metadata } from "next";
+import { TITLE_PREFIX } from "@/constants";
 
 type PageProps = {
  params: {
@@ -46,7 +47,7 @@ export async function generateMetadata({
  }
 
  return {
-  title: `TechTools | ${product.name}`,
+  title: `${TITLE_PREFIX} ${product.name}`,
  };
 }
 

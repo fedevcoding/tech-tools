@@ -1,4 +1,10 @@
 import { Icons } from "@/components/Icons";
+import { TITLE_PREFIX } from "@/constants";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+ title: `${TITLE_PREFIX} Settings`,
+};
 
 const Page = () => {
  return (

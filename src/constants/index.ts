@@ -255,3 +255,5 @@ export const PROUCT_CATEGORIES = [
   value: "smart-home",
  },
 ] as const;
+
+export const TITLE_PREFIX = "TechTools | ";
