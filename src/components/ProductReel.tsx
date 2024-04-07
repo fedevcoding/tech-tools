@@ -55,9 +55,9 @@ const ProductReel = (props: ProductReelProps) => {
  }
 
  return (
-  <section className={cn("py-12 pl-10 flex-1", classNames)}>
-   <div className="md:flex md:items-center md:justify-between mb-4">
-    <div className="max-w-2xl px-4 lg:max-w-4xl lg:px-0">
+  <section className={cn("py-12 lg:pl-10 flex-1", classNames)}>
+   <div className="flex items-center justify-between mb-4 lg:flex-row flex-col gap-8 lg:gap-0">
+    <div className="max-w-2xl px-4 lg:max-w-4xl lg:px-0 text-center">
      {title ? (
       <h1 className="text-2xl font-bold sm:text-3xl">{title}</h1>
      ) : null}
@@ -67,7 +67,7 @@ const ProductReel = (props: ProductReelProps) => {
     </div>
 
     {filter && (
-     <div className="flex items-center gap-10">
+     <div className="flex md:flex-row flex-col items-center md:gap-10  gap-5">
       <div className="flex items-center gap-4">
        <Input placeholder="Min" className="w-16" ref={minRef} />
        <Input placeholder="Max" className="w-16" ref={maxRef} />
