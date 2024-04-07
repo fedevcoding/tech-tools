@@ -18,12 +18,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 const Page = () => {
  const searchParams = useSearchParams();
  const router = useRouter();
- const origin = searchParams.get("origin");
 
  const { mutate } = trpc.auth.resendVerificationEmail.useMutation({
   onError: (err) => {
    if (err.data?.code === "BAD_REQUEST") {
-    toast.error("Invalid email/password or email not verified");
+    toast.error("Invalid email");
    }
   },
   onSuccess: ({ sentToEmail }) => {

@@ -50,7 +50,7 @@ export const getPayloadClient = async ({
    secret: process.env.PAYLOAD_SECRET,
    email: {
     transport: transporter,
-    fromAddress: "delivered@resend.dev",
+    fromAddress: "techtools@fedev.me",
     fromName: "Tech Tools",
    },
    local: initOptions?.express ? false : true,

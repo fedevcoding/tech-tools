@@ -11,7 +11,7 @@ export const getVerifyEmail = ({
  return {
   to,
   from: {
-   address: "delivered@resend.dev",
+   address: "techtools@fedev.me",
    name: "Tech Tools",
   },
   subject: "Verify your email",
@@ -33,7 +33,7 @@ export const getResetEmail = ({
  return {
   to,
   from: {
-   address: "delivered@resend.dev",
+   address: "techtools@fedev.me",
    name: "Tech Tools",
   },
   subject: "Reset your password",
