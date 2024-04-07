@@ -52,12 +52,10 @@ const Page = () => {
 
       {isMounted && items.length === 0 ? (
        <div className="flex h-full flex-col items-center justify-center space-y-1">
-        <div
-         aria-hidden="true"
-         className="relative mb-4 h-40 w-40 text-muted-foreground"
-        >
+        <div aria-hidden="true" className="relative h-24 w-24 mb-8">
          <Icons.logo className="w-full h-full" />
         </div>
+
         <h3 className="font-semibold text-2xl">Your cart is empty</h3>
         <p className="text-muted-foreground text-center">
          <Link

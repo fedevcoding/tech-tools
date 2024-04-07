@@ -57,7 +57,9 @@ const Page = () => {
    <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
     <div className="mx-auto flex W-full flex-col justify-center space-y-6 sm:w-[350px]">
      <div className="flex flex-col items-center space-y-2 text-center">
-      <Icons.logo />
+      <div aria-hidden="true" className="relative h-20 w-20 mb-8">
+       <Icons.logo className="w-full h-full" />
+      </div>
 
       <h1 className="text-3xl font-semibold">Sign in to your account</h1>
       <Link

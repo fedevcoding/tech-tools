@@ -10,12 +10,13 @@ import {
 export const Icons = {
  logo: (props: LucideProps) => (
   <svg
+   {...props}
    xmlns="http://www.w3.org/2000/svg"
    xmlnsXlink="http://www.w3.org/1999/xlink"
    width={45}
    height={45}
+   viewBox="0 0 45 45"
    fill="none"
-   {...props}
   >
    <path fill="url(#a)" d="M0 0h45v45H0z" />
    <defs>

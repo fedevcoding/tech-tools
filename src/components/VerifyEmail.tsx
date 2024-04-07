@@ -43,7 +43,7 @@ const VerifyEmail = ({ token }: { token: string }) => {
  if (data?.success) {
   return (
    <div className="flex h-full flex-col items-center justify-center">
-    <div className="relative mb-4 h-60 w-60 text-muted-foreground">
+    <div aria-hidden="true" className="relative h-32 w-32 mb-8">
      <Icons.logo className="w-full h-full" />
     </div>
 

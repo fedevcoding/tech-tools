@@ -18,7 +18,9 @@ const Page = () => {
 
     {isLoading && (
      <div className="flex flex-col justify-center items-center">
-      <Icons.logo className="w-32 h-32" />
+      <div aria-hidden="true" className="relative h-28 w-28 mb-8">
+       <Icons.logo className="w-full h-full" />
+      </div>
 
       <h1 className="text-xl">Loading...</h1>
      </div>
@@ -26,7 +28,9 @@ const Page = () => {
 
     {!isLoading && orders?.length === 0 && (
      <div className="flex flex-col justify-center items-center">
-      <Icons.logo className="w-32 h-32" />
+      <div aria-hidden="true" className="relative h-28 w-28 mb-8">
+       <Icons.logo className="w-full h-full" />
+      </div>
 
       <h1 className="text-xl">No orders found for this account :(</h1>
      </div>
