@@ -17,16 +17,15 @@ const Navbar = async () => {
   <div className="sticky z-50 top-0 h-20 border-b-2 border-defaultGray bg-background">
    <header className="relative">
     <MaxWidthWrapper>
-     <div className="flex items-center justify-between h-20 gap-10">
+     <div className="flex items-center justify-between h-20 md:gap-10 gap-2">
       <Link className="flex items-center" href={"/"}>
        <Icons.logo />
        <h1 className="text-2xl hidden md:block">TechTools</h1>
       </Link>
-      <div className="relative w-96">
+      <div className="relative">
        <SearchBar />
       </div>
-      <div className="flex items-center gap-12">
-       {/* <Icons.bell size={32} className="cursor-pointer" /> */}
+      <div className="flex items-center md:gap-12 gap-4">
        <Cart />
        {!user ? (
         <Link

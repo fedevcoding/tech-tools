@@ -36,11 +36,11 @@ const SearchBar = () => {
    }}
   >
    <Input
-    className="w-full"
+    className="w-full pl-10"
     placeholder="Search for the product you want"
     ref={inputRef}
    />
-   <Icons.search className="absolute right-4 top-[50%] translate-y-[-50%]" />
+   <Icons.search className="absolute left-2 top-[50%] translate-y-[-50%]" />
   </form>
  );
 };
