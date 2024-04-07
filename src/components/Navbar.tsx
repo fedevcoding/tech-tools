@@ -20,9 +20,9 @@ const Navbar = async () => {
      <div className="flex items-center justify-between h-20 md:gap-10 gap-2">
       <Link className="flex items-center" href={"/"}>
        <Icons.logo />
-       <h1 className="text-2xl hidden md:block">TechTools</h1>
+       <h1 className="text-2xl hidden md:block pl-2">TechTools</h1>
       </Link>
-      <div className="relative">
+      <div className="relative w-96">
        <SearchBar />
       </div>
       <div className="flex items-center md:gap-12 gap-4">
