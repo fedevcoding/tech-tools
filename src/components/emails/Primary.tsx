@@ -33,7 +33,7 @@ export const EmailTemplate = ({
    <Body style={main}>
     <Container style={container}>
      <Img
-      src={`${BASE_URL}/logo.svg`}
+      src={`${BASE_URL}/logo.png`}
       width="150"
       height="150"
       alt="TechTools"
