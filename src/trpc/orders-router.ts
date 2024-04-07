@@ -14,6 +14,9 @@ export const ordersRouter = router({
     user: {
      equals: user.id,
     },
+    _isPaid: {
+     equals: true,
+    },
    },
   });
 
