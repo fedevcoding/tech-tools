@@ -52,7 +52,7 @@ const Page = () => {
       >
        <div className="flex justify-between items-center">
         <div className="flex items-center gap-2 py-7">
-         <div className="bg-defaultGray  rounded-full py-1 px-2 text-sm">
+         <div className="bg-defaultGray rounded-full py-1 px-2 text-sm md:block hidden">
           Order <span className="text-muted-foreground">#{id}</span>
          </div>
          <p className="text-muted-foreground">
@@ -76,7 +76,7 @@ const Page = () => {
          <Link
           href={`/product/${product.id}`}
           key={id}
-          className="border-t-2 border-defaultGray py-4 flex items-center justify-between"
+          className="border-t-2 border-defaultGray py-4 flex items-center justify-between gap-4 flex-wrap"
          >
           <div className="flex items-center gap-8">
            <div className="relative aspect-square overflow-hidden rounded w-28">
