@@ -17,7 +17,7 @@ const Navbar = async () => {
   <div className="sticky z-50 top-0 h-20 border-b-2 border-defaultGray bg-background">
    <header className="relative">
     <MaxWidthWrapper>
-     <div className="flex items-center justify-between h-20 md:gap-10 gap-2">
+     <div className="flex items-center justify-between h-20 md:gap-10 gap-6">
       <Link className="flex items-center" href={"/"}>
        <Icons.logo />
        <h1 className="text-2xl hidden md:block pl-2">TechTools</h1>
