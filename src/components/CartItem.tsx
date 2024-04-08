@@ -1,4 +1,4 @@
-import { CartItem, useCart } from "@/hooks/use-cart";
+import { type CartItem, useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
 import { ImageIcon, Minus, Plus, Trash } from "lucide-react";
 import Image from "next/image";

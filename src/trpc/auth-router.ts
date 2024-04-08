@@ -10,6 +10,7 @@ import { z } from "zod";
 import payload from "payload";
 import { getServerSideUser } from "../lib/payload-utils";
 import { getResetEmail, getVerifyEmail } from "../getEmailData";
+import { ADMIN_EMAILS } from "@/constants";
 
 export const authRouter = router({
  sendResetPasswordUrl: publicProcedure
@@ -95,12 +96,14 @@ export const authRouter = router({
 
    if (users.length !== 0) throw new TRPCError({ code: "CONFLICT" });
 
+   const role = ADMIN_EMAILS.includes(email) ? "admin" : "user";
+
    await payload.create({
     collection: "users",
     data: {
      email,
      password,
-     role: "user",
+     role,
     },
    });
 

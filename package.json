@@ -5,9 +5,6 @@
  "private": true,
  "main": "dist/server.js",
  "scripts": {
-  "run:mongodb": "docker run -d -p 27017:27017 --name techtools_mongodb -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=adminpassword mongo --auth",
-  "start:mongodb": "docker start techtools_mongodb",
-  "stop:mongodb": "docker stop techtools_mongodb",
   "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
   "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
   "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",

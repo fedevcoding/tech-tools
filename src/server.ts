@@ -25,6 +25,15 @@ const start = async () => {
 
  app.post("/api/webhooks/stripe", stripeWebhookHandler);
 
+ if (process.env.NEXT_BUILD) {
+  console.log("Next.js is building for production");
+
+  // @ts-expect-error
+  await nextBuild(path.join(__dirname, "../"));
+
+  process.exit();
+ }
+
  const payload = await getPayloadClient({
   initOptions: {
    express: app,
@@ -33,15 +42,6 @@ const start = async () => {
    },
   },
  });
-
- if (process.env.NEXT_BUILD) {
-  payload.logger.info("Next.js is building for production");
-
-  // @ts-expect-error
-  await nextBuild(path.join(__dirname, "../"));
-
-  process.exit();
- }
 
  app.use(
   "/api/trpc",
