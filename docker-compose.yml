@@ -1,7 +1,5 @@
-version: "3.8"
-
 services:
- techtools:
+ app:
   build:
    context: .
    dockerfile: Dockerfile
@@ -18,7 +16,7 @@ services:
    STRIPE_WEBHOOK_KEY: "${STRIPE_WEBHOOK_KEY}"
   depends_on:
    - mongodb
-  container_name: techtools
+  container_name: app
 
  mongodb:
   image: mongo:latest

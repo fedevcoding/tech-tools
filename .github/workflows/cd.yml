@@ -1,0 +1,23 @@
+name: CD
+
+on:
+ workflow_dispatch:
+ push:
+  branches: ["production"]
+
+jobs:
+ build:
+  runs-on: self-hosted
+
+  steps:
+   - name: Pull github changes
+     run: git pull
+   - name: Run docker container
+     env:
+      MONGODB_URL: ${{ secrets.MONGODB_URL }}
+      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+      NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+      STRIPE_WEBHOOK_KEY: ${{ secrets.STRIPE_WEBHOOK_KEY }}
+     run: docker compose --env-file .env up --build -d --force-recreate
