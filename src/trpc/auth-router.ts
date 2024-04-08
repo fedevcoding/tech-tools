@@ -10,7 +10,7 @@ import { z } from "zod";
 import payload from "payload";
 import { getServerSideUser } from "../lib/payload-utils";
 import { getResetEmail, getVerifyEmail } from "../getEmailData";
-import { ADMIN_EMAILS } from "@/constants";
+import { ADMIN_EMAILS } from "../constants";
 
 export const authRouter = router({
  sendResetPasswordUrl: publicProcedure
