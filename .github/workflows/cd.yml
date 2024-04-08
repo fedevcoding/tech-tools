@@ -11,7 +11,7 @@ jobs:
 
   steps:
    - name: Change directory
-     run: cd ~/tech-tools
+     run: cd ~/Desktop/tech-tools
    - name: Pull github changes
      run: git pull
    - name: Run docker container
