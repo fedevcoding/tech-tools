@@ -20,4 +20,4 @@ jobs:
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
       STRIPE_WEBHOOK_KEY: ${{ secrets.STRIPE_WEBHOOK_KEY }}
-     run: docker compose --env-file .env up --build -d --force-recreate
+     run: docker compose up --build -d --force-recreate
