@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+ webp: {
+  preset: "default",
+  quality: 100,
+ },
  images: {
-  webp: {
-   preset: "default",
-   quality: 100,
-  },
   domains: ["tech-tools.fedev.me"],
   remotePatterns: [
    {
