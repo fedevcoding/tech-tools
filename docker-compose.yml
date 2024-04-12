@@ -1,28 +1,27 @@
 services:
- app:
-  build:
-   context: .
-   dockerfile: Dockerfile
-   args:
-    - NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL}
-  ports:
-   - "3000:3000"
-  environment:
-   MONGODB_URL: "${MONGODB_URL}"
-   PAYLOAD_SECRET: "${PAYLOAD_SECRET}"
-   NEXT_PUBLIC_SERVER_URL: "${NEXT_PUBLIC_SERVER_URL}"
-   RESEND_API_KEY: "${RESEND_API_KEY}"
-   STRIPE_SECRET_KEY: "${STRIPE_SECRET_KEY}"
-   STRIPE_WEBHOOK_KEY: "${STRIPE_WEBHOOK_KEY}"
-  depends_on:
-   - mongodb
-  container_name: app
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL}
+    ports:
+      - "3000:3000"
+    environment:
+      MONGODB_URL: "${MONGODB_URL}"
+      PAYLOAD_SECRET: "${PAYLOAD_SECRET}"
+      NEXT_PUBLIC_SERVER_URL: "${NEXT_PUBLIC_SERVER_URL}"
+      RESEND_API_KEY: "${RESEND_API_KEY}"
+      STRIPE_SECRET_KEY: "${STRIPE_SECRET_KEY}"
+      STRIPE_WEBHOOK_KEY: "${STRIPE_WEBHOOK_KEY}"
+    # depends_on:
+    #  - mongodb
+    container_name: app
+#  mongodb:
+#   image: mongo:latest
+#   container_name: mongodb
+#   volumes:
+#    - mongodb:/data/db
 
- mongodb:
-  image: mongo:latest
-  container_name: mongodb
-  volumes:
-   - mongodb:/data/db
-
-volumes:
- mongodb:
+# volumes:
+#  mongodb:
