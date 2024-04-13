@@ -3,8 +3,7 @@ FROM node:lts-alpine
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY package.json ./
-COPY yarn.lock ./
+COPY package.json yarn.lock ./
 
 RUN yarn install --frozen-lockfile
 

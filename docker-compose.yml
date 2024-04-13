@@ -14,14 +14,18 @@ services:
       RESEND_API_KEY: "${RESEND_API_KEY}"
       STRIPE_SECRET_KEY: "${STRIPE_SECRET_KEY}"
       STRIPE_WEBHOOK_KEY: "${STRIPE_WEBHOOK_KEY}"
-    # depends_on:
-    #  - mongodb
+    volumes:
+      - media_volume:/media
+    depends_on:
+      - mongodb
     container_name: app
-#  mongodb:
-#   image: mongo:latest
-#   container_name: mongodb
-#   volumes:
-#    - mongodb:/data/db
 
-# volumes:
-#  mongodb:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - mongodb:/data/db
+
+volumes:
+  mongodb:
+  media_volume:
